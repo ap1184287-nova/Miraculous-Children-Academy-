@@ -1,14 +1,16 @@
 {
-  "name": "react-example",
+  "name": "miraculous-children-academy-portal",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Miraculous Children Academy (Nikhura, Buxar, Bihar) — Bilingual CBSE School Digital Portal & Installable PWA",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "test": "tsx --test src/utils/schoolLogic.test.ts"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

@@ -2,17 +2,21 @@ import type {
   ClassCurriculum,
   ClassLevel,
   GalleryItem,
+  HomeworkItem,
   NoticeItem,
   Section,
+  SiteContentConfig,
   StudentRecord,
+  StudyMaterialItem,
+  TeacherProfile,
 } from '../types/school';
 
 export const SCHOOL_IMAGES = {
-  heroCampus: '/src/assets/images/hero_campus_clean_1795227925936.jpg',
-  library: '/src/assets/images/campus_library_1795227903578.jpg',
-  scienceLab: '/src/assets/images/science_laboratory_1795227904175.jpg',
-  earlyYears: '/src/assets/images/early_years_classroom_1795227904610.jpg',
-  sportsComplex: '/src/assets/images/sports_auditorium_1795227904211.jpg',
+  heroCampus: './src/assets/images/hero_campus_clean_1795227925936.jpg',
+  library: './src/assets/images/campus_library_1795227903578.jpg',
+  scienceLab: './src/assets/images/science_laboratory_1795227904175.jpg',
+  earlyYears: './src/assets/images/early_years_classroom_1795227904610.jpg',
+  sportsComplex: './src/assets/images/sports_auditorium_1795227904211.jpg',
 };
 
 export const ALL_CLASS_LEVELS: ClassLevel[] = [
@@ -33,6 +37,210 @@ export const ALL_CLASS_LEVELS: ClassLevel[] = [
 
 export const ALL_SECTIONS: Section[] = ['A', 'B', 'C'];
 
+export const DEFAULT_SITE_CONFIG: SiteContentConfig = {
+  schoolName: 'Miraculous Children Academy',
+  schoolNameHi: 'मिरेकुलस चिल्ड्रेन एकेडमी',
+  heroTitle: 'Disciplined scholarship and character for every growing mind.',
+  heroTitleHi: 'नर्सरी से कक्षा 10 तक अनुशासित सीबीएसई शिक्षा और उज्ज्वल भविष्य की नींव।',
+  heroSubtitle:
+    'Located in Nikhura, Buxar, Bihar, Miraculous Children Academy blends NCERT/CBSE academic rigour with mentored classrooms from Nursery to Class 10—backed by a fast, zero-budget digital portal.',
+  heroSubtitleHi:
+    'निखुरा, बक्सर (बिहार) में स्थित मिरेकुलस चिल्ड्रेन एकेडमी नर्सरी से कक्षा 10 तक गुणवत्तापूर्ण सीबीएसई/एनसीईआरटी शिक्षा, विज्ञान प्रयोगशाला और एक संपूर्ण डिजिटल लर्निंग पोर्टल प्रदान करता है।',
+  welcomeTitle: 'Welcome to Our Nikhura, Buxar Campus',
+  welcomeTitleHi: 'हमारे निखुरा, बक्सर परिसर में आपका हार्दिक स्वागत है',
+  welcomeMessage:
+    'At Miraculous Children Academy, we believe rural and semi-urban students in Buxar deserve the same academic clarity, digital study resources, and structured mentorship as leading metropolitan CBSE schools. Every classroom fosters curiosity, bilingual fluency in Hindi and English, and disciplined study habits.',
+  welcomeMessageHi:
+    'मिरेकुलस चिल्ड्रेन एकेडमी का मानना है कि निखुरा और पूरे बक्सर जिले के विद्यार्थियों को भी महानगरों जैसी आधुनिक सीबीएसई शिक्षा, डिजिटल स्टडी मटेरियल और अनुभवी शिक्षकों का मार्गदर्शन मिलना चाहिए। यहाँ हिंदी और अंग्रेजी दोनों माध्यमों में मजबूत नींव तैयार की जाती है।',
+  principalName: 'Dr. Vasundhara Menon',
+  principalQualification: 'M.Sc., Ph.D. (Education) · Principal',
+  principalMessage:
+    'True education pairs intellectual curiosity with moral steadiness. From a child’s first phonics circle in Nursery to their Class 10 CBSE board examination, every milestone is guided with personal care and transparent communication with parents.',
+  principalMessageHi:
+    'सच्ची शिक्षा ज्ञान के साथ संस्कार और अनुशासन का निर्माण करती है। नर्सरी में पहले अक्षर से लेकर कक्षा 10 की बोर्ड परीक्षा तक, हमारे शिक्षक प्रत्येक विद्यार्थी की प्रगति पर व्यक्तिगत ध्यान देते हैं और अभिभावकों से निरंतर संवाद बनाए रखते हैं।',
+  address: 'Miraculous Children Academy, Nikhura, District Buxar, Bihar – 802101, India',
+  addressHi: 'मिरेकुलस चिल्ड्रेन एकेडमी, ग्राम निखुरा, जिला बक्सर, बिहार – 802101, भारत',
+  phone: '+91 90000 00000 (Demo Helpline)',
+  email: 'admissions@miraculousacademy.edu.in',
+  officeHours: 'Mon–Sat · 08:30 AM – 03:00 PM',
+  admissionsBanner: 'Admissions Open for Academic Session 2026–2027 (Nursery to Class 10)',
+  admissionsBannerHi: 'शैक्षणिक सत्र 2026–2027 के लिए प्रवेश प्रारंभ (नर्सरी से कक्षा 10)',
+  primaryColor: '#0F2859',
+};
+
+export interface SchoolFeatureItem {
+  index: string;
+  titleEn: string;
+  titleHi: string;
+  descriptionEn: string;
+  descriptionHi: string;
+}
+
+export const SCHOOL_FEATURES: SchoolFeatureItem[] = [
+  {
+    index: '01',
+    titleEn: 'NCERT & CBSE Aligned Pedagogy',
+    titleHi: 'एनसीईआरटी व सीबीएसई आधारित पाठ्यक्रम',
+    descriptionEn:
+      'Structured lesson plans, weekly assessments, and concept mastery from Nursery through Class 10 Board preparation.',
+    descriptionHi:
+      'नर्सरी से कक्षा 10 बोर्ड परीक्षा तक सुव्यवस्थित पाठ योजना, साप्ताहिक अभ्यास और मजबूत अवधारणात्मक तैयारी।',
+  },
+  {
+    index: '02',
+    titleEn: 'Bilingual Comfort (Hindi & English)',
+    titleHi: 'हिंदी एवं अंग्रेजी दोनों में सहज शिक्षण',
+    descriptionEn:
+      'Supportive English-medium instruction paired with strong Hindi comprehension so no student feels left behind.',
+    descriptionHi:
+      'अंग्रेजी माध्यम के साथ-साथ सरल हिंदी व्याख्या ताकि हर विद्यार्थी विषय को गहराई से समझ सके।',
+  },
+  {
+    index: '03',
+    titleEn: 'Science, Math & Computer Labs',
+    titleHi: 'विज्ञान, गणित और कंप्यूटर प्रयोगशाला',
+    descriptionEn:
+      'Hands-on Physics, Chemistry, Biology, and IT practical sessions aligned with CBSE Class 6–10 laboratory rubrics.',
+    descriptionHi:
+      'कक्षा 6 से 10 के लिए प्रायोगिक विज्ञान और कंप्यूटर शिक्षा, जिससे रटने की जगह सीखने पर बल मिलता है।',
+  },
+  {
+    index: '04',
+    titleEn: 'Digital Student Corner & Homework',
+    titleHi: 'डिजिटल स्टूडेंट कॉर्नर व होमवर्क पोर्टल',
+    descriptionEn:
+      '24x7 mobile access to class-wise study notes, worksheets, sample question papers, and holiday homework.',
+    descriptionHi:
+      'मोबाइल और कंप्यूटर पर 24 घंटे कक्षा-वार नोट्स, वर्कशीट, सैंपल पेपर और छुट्टियों का होमवर्क उपलब्ध।',
+  },
+  {
+    index: '05',
+    titleEn: 'Safe & Peaceful Nikhura Campus',
+    titleHi: 'निखुरा में शांत एवं सुरक्षित परिसर',
+    descriptionEn:
+      'Ventilated classrooms, clean drinking water, boundary security, and an open athletic ground in Nikhura, Buxar.',
+    descriptionHi:
+      'हवादार कक्षाएं, स्वच्छ पेयजल, सुरक्षित परिसर और खेलकूद के लिए विशाल मैदान।',
+  },
+  {
+    index: '06',
+    titleEn: '18:1 Mentorship & Parent Connect',
+    titleHi: 'व्यक्तिगत ध्यान एवं अभिभावक संवाद',
+    descriptionEn:
+      'Regular Parent–Teacher Conferences, attendance monitoring, and remedial doubt-clearing clinics before exams.',
+    descriptionHi:
+      'नियमित पेरेंट-टीचर मीटिंग, उपस्थिति निगरानी और परीक्षा से पहले विशेष डाउट-क्लियरिंग कक्षाएं।',
+  },
+];
+
+export const SCHOOL_HISTORY_MILESTONES = [
+  {
+    year: '2012',
+    titleEn: 'Foundation in Nikhura, Buxar',
+    titleHi: 'निखुरा, बक्सर में स्थापना',
+    detailEn:
+      'Started with Nursery to Class 5 classrooms to bring quality CBSE-pattern primary schooling closer to families in Nikhura and nearby villages.',
+    detailHi:
+      'निखुरा एवं आसपास के गांवों के बच्चों को गुणवत्तापूर्ण सीबीएसई शिक्षा देने हेतु नर्सरी से कक्षा 5 तक की शुरुआत।',
+  },
+  {
+    year: '2017',
+    titleEn: 'Middle Wing & Science Laboratory Expansion',
+    titleHi: 'मिडिल विंग व विज्ञान प्रयोगशाला का विस्तार',
+    detailEn:
+      'Added Classes 6 to 8 along with a dedicated Reference Library and composite Science demonstration laboratory.',
+    detailHi:
+      'कक्षा 6 से 8 तक विस्तार, पुस्तकालय और आधुनिक विज्ञान प्रयोगशाला की स्थापना।',
+  },
+  {
+    year: '2022',
+    titleEn: 'Secondary Wing (Classes 9 & 10) & Athletics Ground',
+    titleHi: 'हाई स्कूल (कक्षा 9–10) व खेल मैदान',
+    detailEn:
+      'Upgraded up to Class 10 CBSE secondary coaching, computer laboratory, and inter-house sports complex.',
+    detailHi:
+      'कक्षा 10 तक पूर्ण माध्यमिक शिक्षा, कंप्यूटर लैब और वार्षिक खेलकूद परिसर का शुभारंभ।',
+  },
+  {
+    year: '2026',
+    titleEn: 'Bilingual Digital Campus & Installable PWA',
+    titleHi: 'द्विभाषी डिजिटल पोर्टल व मोबाइल PWA लॉन्च',
+    detailEn:
+      'Launched zero-budget bilingual Student Corner, online Homework & Study Material hub, and installable mobile app experience.',
+    detailHi:
+      'अभिभावकों और विद्यार्थियों के लिए हिंदी-अंग्रेजी डिजिटल पोर्टल, होमवर्क अपडेट और मोबाइल ऐप सुविधा की शुरुआत।',
+  },
+];
+
+export const INITIAL_TEACHERS: TeacherProfile[] = [
+  {
+    id: 'tch-1',
+    name: 'Dr. Vasundhara Menon',
+    nameHi: 'डॉ. वसुंधरा मेनन',
+    role: 'Principal',
+    roleHi: 'प्रधानाचार्य',
+    qualification: 'M.Sc., Ph.D. (Education)',
+    subjects: 'Educational Leadership & Science Mentoring',
+    classesHandled: 'Nursery – Class 10',
+    experienceYears: 18,
+  },
+  {
+    id: 'tch-2',
+    name: 'Mr. Rakesh Kumar Tiwary',
+    nameHi: 'श्री राकेश कुमार तिवारी',
+    role: 'Senior Mathematics Coordinator',
+    roleHi: 'वरिष्ठ गणित शिक्षक',
+    qualification: 'M.Sc. (Mathematics), B.Ed.',
+    subjects: 'Mathematics Standard & Basic',
+    classesHandled: 'Class 8, Class 9 & Class 10',
+    experienceYears: 12,
+  },
+  {
+    id: 'tch-3',
+    name: 'Mrs. Sunita Nair',
+    nameHi: 'श्रीमती सुनीता नायर',
+    role: 'Head of Sciences & Class 10A Mentor',
+    roleHi: 'विज्ञान विभागाध्यक्ष (कक्षा 10A)',
+    qualification: 'M.Sc. (Physics), B.Ed.',
+    subjects: 'Science (Physics & Chemistry)',
+    classesHandled: 'Class 7 to Class 10',
+    experienceYears: 11,
+  },
+  {
+    id: 'tch-4',
+    name: 'Mr. Arvind Deshmukh',
+    nameHi: 'श्री अरविंद देशमुख',
+    role: 'Social Science & IT Faculty',
+    roleHi: 'सामाजिक विज्ञान एवं कंप्यूटर शिक्षक',
+    qualification: 'M.A. (History), PGDCA, B.Ed.',
+    subjects: 'Social Science & Information Technology (402)',
+    classesHandled: 'Class 6 to Class 10',
+    experienceYears: 9,
+  },
+  {
+    id: 'tch-5',
+    name: 'Mrs. Poonam Upadhyay',
+    nameHi: 'श्रीमती पूनम उपाध्याय',
+    role: 'Hindi & Sanskrit Faculty',
+    roleHi: 'हिंदी एवं संस्कृत शिक्षिका',
+    qualification: 'M.A. (Hindi), B.Ed.',
+    subjects: 'Hindi Course-A & Sanskrit',
+    classesHandled: 'Class 3 to Class 10',
+    experienceYears: 10,
+  },
+  {
+    id: 'tch-6',
+    name: 'Mrs. Deepa Krishnan',
+    nameHi: 'श्रीमती दीपा कृष्णन',
+    role: 'Foundational Wing Head (Montessori)',
+    roleHi: 'फाउंडेशनल विंग प्रमुख (नर्सरी–UKG)',
+    qualification: 'B.A., NTT / Montessori Diploma',
+    subjects: 'Phonics, Early Numeracy & Activity Learning',
+    classesHandled: 'Nursery, LKG & UKG',
+    experienceYears: 8,
+  },
+];
+
 export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
   {
     classLevel: 'Nursery',
@@ -40,6 +248,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Foundational Stage (NEP 2020)',
     ageGroup: '3–4 Years',
     sections: ['A', 'B'],
+    classTeacher: 'Mrs. Deepa Krishnan',
     coreSubjects: ['Phonics & Oral English', 'Pre-Number Readiness', 'Sensory & Motor Play', 'Nature Discovery'],
     coCurriculars: ['Storytelling Theatre', 'Clay & Finger Painting', 'Rhythm & Movement'],
     assessmentPattern: 'Continuous observational portfolio (no formal written tests)',
@@ -51,6 +260,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Foundational Stage (NEP 2020)',
     ageGroup: '4–5 Years',
     sections: ['A', 'B'],
+    classTeacher: 'Mrs. Deepa Krishnan',
     coreSubjects: ['English Phonics & Rhymes', 'Hindi Swar Parichay', 'Early Numeracy', 'Environmental Awareness'],
     coCurriculars: ['Guided Outdoor Play', 'Music & Vocal Circle', 'Origami Craft'],
     assessmentPattern: 'Developmental milestone checklist & term showcase',
@@ -62,6 +272,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Foundational Stage (NEP 2020)',
     ageGroup: '5–6 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Ms. Anjali Singh',
     coreSubjects: ['English Reading & Writing', 'Hindi Varnamala & Matra', 'Foundational Arithmetic', 'World Around Us'],
     coCurriculars: ['Picture Book Reading', 'Gardening Club', 'Yoga & Balance'],
     assessmentPattern: 'Activity-based readiness review across literacy and numeracy',
@@ -73,6 +284,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Preparatory Stage (Classes 1–5)',
     ageGroup: '6–7 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Ms. Kavita Iyer',
     coreSubjects: ['English', 'Hindi', 'Mathematics', 'Environmental Studies (EVS)', 'Computer Basics'],
     coCurriculars: ['Art & Drawing', 'Library Hour', 'Athletics & Yoga'],
     assessmentPattern: 'CBSE Formative Cycles + Term-end Competency Worksheets',
@@ -84,6 +296,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Preparatory Stage (Classes 1–5)',
     ageGroup: '7–8 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Ms. Kavita Iyer',
     coreSubjects: ['English', 'Hindi', 'Mathematics', 'Environmental Studies (EVS)', 'Digital Literacy'],
     coCurriculars: ['Choral Music', 'Nature Walk', 'Indoor Board Strategy'],
     assessmentPattern: 'CBSE Formative Cycles + Practical Skill Rubrics',
@@ -95,10 +308,11 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Preparatory Stage (Classes 1–5)',
     ageGroup: '8–9 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Mrs. Poonam Upadhyay',
     coreSubjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies', 'Computer Science'],
-    coCurriculars: ['Abacus & Mental Math', 'Elocution', 'Basketball Fundamentals'],
+    coCurriculars: ['Abacus & Mental Math', 'Elocution', 'Athletics Fundamentals'],
     assessmentPattern: 'Periodic Assessments (PA 1 & PA 2) + Half-Yearly & Annual Exams',
-    focusSummary: 'Transition into dedicated Science and Social Studies inquiry alongside structured English grammar.',
+    focusSummary: 'Transition into dedicated Science and Social Studies inquiry alongside structured English and Hindi grammar.',
   },
   {
     classLevel: 'Class 4',
@@ -106,6 +320,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Preparatory Stage (Classes 1–5)',
     ageGroup: '9–10 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Mrs. Poonam Upadhyay',
     coreSubjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Computer Applications'],
     coCurriculars: ['Science Model Lab', 'Classical & Folk Dance', 'Team Sports'],
     assessmentPattern: 'CBSE Term 1 & Term 2 with Notebook & Subject Enrichment',
@@ -117,6 +332,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Preparatory Stage (Classes 1–5)',
     ageGroup: '10–11 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Ms. Kavita Iyer',
     coreSubjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Sanskrit (Intro)', 'Coding Basics'],
     coCurriculars: ['Young Authors Guild', 'Robotics Discovery', 'Inter-House Debate'],
     assessmentPattern: 'CBSE Term 1 & Term 2 Competency Evaluation',
@@ -128,6 +344,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Middle Stage (Classes 6–8)',
     ageGroup: '11–12 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Mr. Arvind Deshmukh',
     coreSubjects: ['English', 'Hindi', 'Sanskrit', 'Mathematics', 'Science', 'Social Science', 'Computer Science'],
     coCurriculars: ['STEM Tinkering Lab', 'House Athletics', 'Eco-Council'],
     assessmentPattern: 'CBSE 80+20 Pattern (Written Exam + Internal Assessment)',
@@ -139,8 +356,9 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Middle Stage (Classes 6–8)',
     ageGroup: '12–13 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Mrs. Sunita Nair',
     coreSubjects: ['English', 'Hindi', 'Sanskrit', 'Mathematics', 'Science', 'Social Science', 'Python & AI Foundations'],
-    coCurriculars: ['Mathematics Olympiad Circle', 'Model UN', 'Badminton & Cricket'],
+    coCurriculars: ['Mathematics Olympiad Circle', 'Debate Society', 'Badminton & Cricket'],
     assessmentPattern: 'CBSE 80+20 Pattern with Lab & Portfolio Grading',
     focusSummary: 'Experimental verification in Physics, Chemistry, and Biology labs paired with structured computational thinking.',
   },
@@ -150,6 +368,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Middle Stage (Classes 6–8)',
     ageGroup: '13–14 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Mr. Arvind Deshmukh',
     coreSubjects: ['English', 'Hindi', 'Sanskrit', 'Mathematics', 'Science', 'Social Science', 'Information Technology'],
     coCurriculars: ['Science Exhibition', 'Literary Society', 'Track & Field'],
     assessmentPattern: 'CBSE 80+20 Pattern + Pre-Secondary Readiness Audit',
@@ -161,6 +380,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Secondary Stage (Classes 9–10)',
     ageGroup: '14–15 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Mr. Rakesh Kumar Tiwary',
     coreSubjects: [
       'English Language & Literature (184)',
       'Hindi Course-A / Sanskrit',
@@ -179,6 +399,7 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
     stageName: 'Secondary Stage (Classes 9–10)',
     ageGroup: '15–16 Years',
     sections: ['A', 'B', 'C'],
+    classTeacher: 'Mrs. Sunita Nair',
     coreSubjects: [
       'English Language & Literature (184)',
       'Hindi Course-A (002)',
@@ -193,6 +414,222 @@ export const CLASS_CURRICULUM_LIST: ClassCurriculum[] = [
   },
 ];
 
+export const INITIAL_STUDY_MATERIALS: StudyMaterialItem[] = [
+  {
+    id: 'mat-01',
+    title: 'Quadratic Equations & Formula Handbook (Chapter 4)',
+    titleHi: 'द्विघात समीकरण सूत्र एवं एनसीईआरटी सारांश (अध्याय 4)',
+    classLevel: 'Class 10',
+    subject: 'Mathematics (041)',
+    kind: 'material',
+    summary: 'Standard form, discriminant rules, factorization, and solved board-level quadratic problems.',
+    content: [
+      '1. Standard Quadratic Equation: ax^2 + bx + c = 0, where a != 0.',
+      '2. Quadratic Formula: x = (-b ± sqrt(b^2 - 4ac)) / (2a).',
+      '3. Discriminant D = b^2 - 4ac:',
+      '   - D > 0 : Two distinct real roots',
+      '   - D = 0 : Two equal real roots (x = -b / 2a)',
+      '   - D < 0 : No real roots',
+      '4. Board Practice Tip: Always check word problems on speed/time and age by substituting roots back into conditions.',
+    ].join('\n'),
+    updatedDate: '19 Nov 2026',
+    author: 'Mr. Rakesh Kumar Tiwary',
+  },
+  {
+    id: 'mat-02',
+    title: 'Light — Reflection & Refraction Ray Diagrams Worksheet',
+    titleHi: 'प्रकाश: परावर्तन एवं अपवर्तन किरण आरेख वर्कशीट',
+    classLevel: 'Class 10',
+    subject: 'Science (086)',
+    kind: 'worksheet',
+    summary: 'Concave/convex mirror ray tracing checklist, mirror formula numericals, and Snell’s Law practice.',
+    content: [
+      'Part A — Mirror Formula: 1/f = 1/v + 1/u | Magnification m = -v/u = h_i / h_o.',
+      'Part B — Lens Formula: 1/f = 1/v - 1/u | Power P = 1/f(m) in Dioptres.',
+      'Practice Questions:',
+      'Q1. Draw neat ray diagrams for an object placed between F and 2F of a convex lens.',
+      'Q2. An object 4 cm high is placed 25 cm in front of a concave mirror of focal length 15 cm. Find image position and nature.',
+    ].join('\n'),
+    updatedDate: '18 Nov 2026',
+    author: 'Mrs. Sunita Nair',
+  },
+  {
+    id: 'mat-03',
+    title: 'CBSE Class 10 Pre-Board Sample Question Paper (Science)',
+    titleHi: 'सीबीएसई कक्षा 10 विज्ञान सैंपल प्रश्न-पत्र (80 अंक)',
+    classLevel: 'Class 10',
+    subject: 'Science (086)',
+    kind: 'sample-paper',
+    summary: 'Full 3-hour 80-mark CBSE pattern sample paper with Section A MCQs, Case Studies, and Long Answers.',
+    content: [
+      'Time Allowed: 3 Hours | Maximum Marks: 80',
+      'Section A (20 x 1 = 20 Marks): Competency-based MCQs & Assertion-Reasoning.',
+      'Section B (6 x 2 = 12 Marks): Short Answer Questions (30–50 words).',
+      'Section C (7 x 3 = 21 Marks): Analytical & Numerical Questions.',
+      'Section D (3 x 5 = 15 Marks): Long Answer Questions with diagrams.',
+      'Section E (3 x 4 = 12 Marks): Case-based / Source-based integrated units.',
+      '',
+      'Sample Q1 (1 Mark): Why do ionic compounds conduct electricity in molten state but not as solids?',
+      'Sample Q2 (3 Marks): Explain double circulation in humans with a labelled schematic block diagram.',
+    ].join('\n'),
+    updatedDate: '17 Nov 2026',
+    author: 'Mrs. Sunita Nair',
+  },
+  {
+    id: 'mat-04',
+    title: 'CBSE Class 10 Mathematics Standard Sample Paper Set-I',
+    titleHi: 'कक्षा 10 गणित मानक (Standard) सैंपल पेपर सेट-1',
+    classLevel: 'Class 10',
+    subject: 'Mathematics (041)',
+    kind: 'sample-paper',
+    summary: '80-mark board practice set covering Trigonometry, Triangles, Coordinate Geometry, and Statistics.',
+    content: [
+      'Time: 3 Hours | Max Marks: 80',
+      'Q1. If HCF(306, 657) = 9, find LCM(306, 657).',
+      'Q2. Prove that sqrt(5) is an irrational number.',
+      'Q3. Find the zeroes of x^2 - 2x - 8 and verify relationship with coefficients.',
+      'Q4. Prove Basic Proportionality Theorem (Thales Theorem).',
+    ].join('\n'),
+    updatedDate: '16 Nov 2026',
+    author: 'Mr. Rakesh Kumar Tiwary',
+  },
+  {
+    id: 'mat-05',
+    title: 'Crop Production, Microorganisms & Conservation Notes',
+    titleHi: 'फसल उत्पादन, सूक्ष्मजीव और संरक्षण नोट्स',
+    classLevel: 'Class 8',
+    subject: 'Science',
+    kind: 'material',
+    summary: 'Kharif vs Rabi crops, nitrogen cycle diagram points, and useful vs harmful microbes summary.',
+    content: [
+      '1. Kharif Crops (June–Sept): Paddy, Maize, Soyabean, Groundnut.',
+      '2. Rabi Crops (Oct–March): Wheat, Gram, Pea, Mustard, Linseed.',
+      '3. Nitrogen Fixation: Rhizobium bacteria in root nodules of leguminous plants convert atmospheric N2 into usable nitrates.',
+    ].join('\n'),
+    updatedDate: '15 Nov 2026',
+    author: 'Mrs. Sunita Nair',
+  },
+  {
+    id: 'mat-06',
+    title: 'Hindi Vyakaran: Sandhi, Samas & Muhavare Practice Sheet',
+    titleHi: 'हिंदी व्याकरण: संधि, समास एवं मुहावरे अभ्यास पत्रक',
+    classLevel: 'Class 8',
+    subject: 'Hindi',
+    kind: 'worksheet',
+    summary: 'स्वर संधि के भेद, समास विग्रह और बोर्ड परीक्षा हेतु महत्वपूर्ण मुहावरों का अभ्यास।',
+    content: [
+      '1. संधि विच्छेद करें: विद्यालय (विद्या + आलय), हिमालय (हिम + आलय), गणेश (गण + ईश)।',
+      '2. समास पहचानें: नीलकमल (कर्मधारय), चौराहा (द्विगु), माता-पिता (द्वंद्व)।',
+      '3. मुहावरे वाक्य प्रयोग: आँखों का तारा, ईद का चाँद होना, कमर कसना।',
+    ].join('\n'),
+    updatedDate: '14 Nov 2026',
+    author: 'Mrs. Poonam Upadhyay',
+  },
+  {
+    id: 'mat-07',
+    title: 'Fractions, Decimals & Word Problems Worksheet',
+    titleHi: 'भिन्न, दशमलव एवं इबारती प्रश्न अभ्यास वर्कशीट',
+    classLevel: 'Class 5',
+    subject: 'Mathematics',
+    kind: 'worksheet',
+    summary: 'Equivalent fractions, addition/subtraction of unlike fractions, and daily life word problems.',
+    content: [
+      'Q1. Convert 3/4 and 7/10 into like fractions and add them.',
+      'Q2. A water bottle holds 1.25 litres. How much water is in 6 such bottles?',
+      'Q3. Shade 3/8 of a rectangle divided into 8 equal grid boxes.',
+    ].join('\n'),
+    updatedDate: '13 Nov 2026',
+    author: 'Ms. Kavita Iyer',
+  },
+  {
+    id: 'mat-08',
+    title: 'Phonics Sight Words & Picture Tracing Booklet',
+    titleHi: 'फ़ोनिक्स शब्द ज्ञान एवं चित्र मिलान अभ्यास पुस्तिका',
+    classLevel: 'Nursery',
+    subject: 'Phonics & Oral English',
+    kind: 'material',
+    summary: 'A–Z phonetic sound cues, colour recognition rhymes, and pre-writing curve patterns.',
+    content: [
+      'A - Apple (/æ/), B - Ball (/b/), C - Cat (/k/), D - Drum (/d/).',
+      'Parent Activity: Trace standing lines, sleeping lines, and gentle waves using crayons.',
+    ].join('\n'),
+    updatedDate: '12 Nov 2026',
+    author: 'Mrs. Deepa Krishnan',
+  },
+];
+
+export const INITIAL_HOMEWORK: HomeworkItem[] = [
+  {
+    id: 'hw-01',
+    classLevel: 'Class 10',
+    subject: 'Mathematics (041)',
+    title: 'Trigonometry NCERT Exercise 8.4 (Q5 Parts i–v)',
+    description: 'Solve proving identities cleanly in your Board Practice Notebook with step-by-step reasons.',
+    assignedDate: '20 Nov 2026',
+    dueDate: '22 Nov 2026',
+    isHolidayHomework: false,
+  },
+  {
+    id: 'hw-02',
+    classLevel: 'Class 10',
+    subject: 'Science (086)',
+    title: 'Winter Holiday Practical File & Ray Diagrams Project',
+    description: 'Complete 6 Biology & Physics practical experiments with neat pencil diagrams and observation tables.',
+    assignedDate: '18 Nov 2026',
+    dueDate: '02 Dec 2026',
+    isHolidayHomework: true,
+  },
+  {
+    id: 'hw-03',
+    classLevel: 'Class 8',
+    subject: 'Social Science',
+    title: 'Indian Constitution — Fundamental Rights Chart',
+    description: 'Write the 6 Fundamental Rights in Hindi & English with one real-life civic example each.',
+    assignedDate: '19 Nov 2026',
+    dueDate: '23 Nov 2026',
+    isHolidayHomework: false,
+  },
+  {
+    id: 'hw-04',
+    classLevel: 'Class 5',
+    subject: 'English & Hindi',
+    title: 'Holiday Creative Reading & Paragraph Diary',
+    description: 'Read 2 short moral stories (1 English, 1 Hindi) and write 8-line summaries in neat cursive/Devanagari.',
+    assignedDate: '17 Nov 2026',
+    dueDate: '01 Dec 2026',
+    isHolidayHomework: true,
+  },
+  {
+    id: 'hw-05',
+    classLevel: 'Nursery',
+    subject: 'Early Numeracy',
+    title: 'Count & Colour Objects (Numbers 1 to 10)',
+    description: 'Count fruits or leaves at home with parents and trace numbers 1 to 10 in the activity workbook.',
+    assignedDate: '20 Nov 2026',
+    dueDate: '24 Nov 2026',
+    isHolidayHomework: false,
+  },
+];
+
+export const EXAM_CALENDAR_ROWS = [
+  { exam: 'Periodic Assessment I (PA 1)', classes: 'Classes 1 – 10', window: '28 Jul – 05 Aug 2026', weightage: '10% Internal' },
+  { exam: 'Half-Yearly Examination (Term 1)', classes: 'Nursery – Class 10', window: '21 Sep – 06 Oct 2026', weightage: '80 Theory + 20 Internal' },
+  { exam: 'Periodic Assessment II (PA 2)', classes: 'Classes 1 – 9', window: '16 Nov – 24 Nov 2026', weightage: '10% Internal' },
+  { exam: 'Class 10 Pre-Board Examination I & II', classes: 'Class 10', window: '04 Dec 2026 & 18 Jan 2027', weightage: 'Full CBSE AISSE Mock' },
+  { exam: 'Annual Examination (Term 2)', classes: 'Nursery – Class 9', window: '22 Feb – 10 Mar 2027', weightage: 'Final Promotion' },
+];
+
+export const CBSE_GRADING_SCALE = [
+  { range: '91 – 100', grade: 'A1', remark: 'Outstanding / उत्कृष्ट' },
+  { range: '81 – 90', grade: 'A2', remark: 'Excellent / अति उत्तम' },
+  { range: '71 – 80', grade: 'B1', remark: 'Very Good / बहुत अच्छा' },
+  { range: '61 – 70', grade: 'B2', remark: 'Good / अच्छा' },
+  { range: '51 – 60', grade: 'C1', remark: 'Above Average / संतोषजनक' },
+  { range: '41 – 50', grade: 'C2', remark: 'Average / औसत' },
+  { range: '33 – 40', grade: 'D', remark: 'Pass Minimum / उत्तीर्ण' },
+  { range: 'Below 33', grade: 'E', remark: 'Needs Improvement / सुधार आवश्यक' },
+];
+
 // STRICTLY FICTIONAL DEMO STUDENT RECORDS ONLY
 export const DEMO_STUDENTS: StudentRecord[] = [
   {
@@ -205,7 +642,7 @@ export const DEMO_STUDENTS: StudentRecord[] = [
     house: 'Sapphire',
     classTeacher: 'Mrs. Sunita Nair',
     guardianName: 'Rajesh Sharma (Demo Guardian)',
-    guardianContactMasked: 'Verified Guardian Account (Demo)',
+    guardianContactMasked: 'Verified Demo Guardian',
     dateOfBirthMasked: '14 Aug 2011',
     isDemoRecord: true,
     attendance: [
@@ -257,7 +694,7 @@ export const DEMO_STUDENTS: StudentRecord[] = [
     house: 'Goldcrest',
     classTeacher: 'Mr. Arvind Deshmukh',
     guardianName: 'Meenakshi Verma (Demo Guardian)',
-    guardianContactMasked: 'Verified Guardian Account (Demo)',
+    guardianContactMasked: 'Verified Demo Guardian',
     dateOfBirthMasked: '22 Nov 2013',
     isDemoRecord: true,
     attendance: [
@@ -296,7 +733,7 @@ export const DEMO_STUDENTS: StudentRecord[] = [
     house: 'Emerald',
     classTeacher: 'Ms. Kavita Iyer',
     guardianName: 'Sandeep Kulkarni (Demo Guardian)',
-    guardianContactMasked: 'Verified Guardian Account (Demo)',
+    guardianContactMasked: 'Verified Demo Guardian',
     dateOfBirthMasked: '03 Mar 2016',
     isDemoRecord: true,
     attendance: [
@@ -334,7 +771,7 @@ export const DEMO_STUDENTS: StudentRecord[] = [
     house: 'Crimson',
     classTeacher: 'Mrs. Deepa Krishnan',
     guardianName: 'Vikram Nair (Demo Guardian)',
-    guardianContactMasked: 'Verified Guardian Account (Demo)',
+    guardianContactMasked: 'Verified Demo Guardian',
     dateOfBirthMasked: '19 Jan 2023',
     isDemoRecord: true,
     attendance: [
@@ -366,12 +803,12 @@ export const INITIAL_NOTICES: NoticeItem[] = [
   {
     id: 'notice-01',
     referenceNo: 'MCA/CIR/2026-114',
-    title: 'CBSE Pre-Board I Timetable & Practical Assessment Schedule',
+    title: 'CBSE Pre-Board I Timetable & Practical Assessment Schedule (कक्षा 10 प्री-बोर्ड सूचना)',
     category: 'Examination',
     date: '18 Nov 2026',
     audience: 'Class 10 (Sections A, B & C)',
-    summary: 'Pre-Board I written assessments begin 04 December 2026; science and IT practical evaluations conclude on 30 November.',
-    body: 'Parents and students of Class 10 are informed that the CBSE Pre-Board I Examination will commence on Friday, 04 December 2026 at 08:45 AM. Admit cards for internal mock verification will be distributed by class teachers on 28 November. Students must carry transparent stationery pouches and wear complete winter school uniform.',
+    summary: 'Pre-Board I written assessments begin 04 December 2026 at Nikhura Campus; Science and IT practicals conclude 30 November.',
+    body: 'Parents and students of Class 10 at Miraculous Children Academy, Nikhura, Buxar are informed that the CBSE Pre-Board I Examination will commence on Friday, 04 December 2026 at 08:45 AM. Admit cards for internal mock verification will be distributed by class teachers on 28 November. Students must wear complete winter school uniform.',
     isPinned: true,
   },
   {
@@ -381,19 +818,19 @@ export const INITIAL_NOTICES: NoticeItem[] = [
     category: 'Academic',
     date: '14 Nov 2026',
     audience: 'Nursery to Class 10',
-    summary: 'Scheduled individual slots from 09:00 AM to 01:30 PM on Saturday, 28 November 2026 in respective homerooms.',
-    body: 'The Term 1 Parent–Teacher Conference will be held on Saturday, 28 November 2026. Parents are requested to adhere to their assigned 15-minute slot shared via the class diary to review Term 1 examination scripts, attendance registers, and co-curricular progress.',
+    summary: 'Scheduled slots from 09:00 AM to 01:30 PM on Saturday, 28 November 2026 in respective classrooms.',
+    body: 'The Term 1 Parent–Teacher Conference will be held on Saturday, 28 November 2026. Parents are requested to visit their ward’s classroom during their scheduled slot to review Term 1 answer scripts, attendance registers, and holiday homework guidelines.',
     isPinned: true,
   },
   {
     id: 'notice-03',
     referenceNo: 'MCA/CIR/2026-109',
-    title: 'Annual Inter-House Athletics & Cultural Showcase',
+    title: 'Annual Inter-House Athletics & Cultural Showcase (वार्षिक खेलकूद व सांस्कृतिक कार्यक्रम)',
     category: 'Events',
     date: '10 Nov 2026',
     audience: 'All Students & Families',
-    summary: 'Track heats begin 02 December; Grand Finale and Prize Distribution on Saturday, 12 December at the Main Athletic Complex.',
-    body: 'Miraculous Children Academy invites families to our Annual Athletics & Cultural Showcase. House captains will coordinate march-past rehearsals during the zero period. Participating students must submit signed parental consent slips to their House Wardens by 25 November.',
+    summary: 'Track heats begin 02 December; Grand Finale and Prize Distribution on Saturday, 12 December at the Nikhura Athletic Ground.',
+    body: 'Miraculous Children Academy invites families across Buxar to our Annual Athletics & Cultural Showcase. Participating students must submit signed parental consent slips to their House Wardens by 25 November.',
   },
   {
     id: 'notice-04',
@@ -403,59 +840,59 @@ export const INITIAL_NOTICES: NoticeItem[] = [
     date: '04 Nov 2026',
     audience: 'Nursery to Class 10',
     summary: 'Full winter uniform (royal blue blazer and tie) mandatory from Monday, 23 November 2026.',
-    body: 'With seasonal morning temperatures dropping, students from Class 1 to Class 10 are required to wear the official royal blue blazer with school crest and grey woollen trousers/skirt beginning 23 November 2026. Foundational stage students (Nursery–UKG) should wear the navy fleece cardigan.',
+    body: 'With seasonal morning temperatures dropping in Buxar, students from Class 1 to Class 10 are required to wear the official royal blue blazer with school crest and grey woollen trousers/skirt beginning 23 November 2026.',
   },
   {
     id: 'notice-05',
     referenceNo: 'MCA/CIR/2026-101',
-    title: 'Academic Calendar Update: Guru Nanak Jayanti Holiday',
+    title: 'School Holiday Notification: Guru Nanak Jayanti (अवकाश सूचना)',
     category: 'Holidays',
     date: '01 Nov 2026',
     audience: 'All Students & Staff',
     summary: 'Campus and school transport services will remain closed on Wednesday, 25 November 2026.',
-    body: 'In observance of Guru Nanak Jayanti, Miraculous Children Academy will remain closed on Wednesday, 25 November 2026. Regular classes and laboratory sessions will resume at 08:00 AM on Thursday, 26 November 2026.',
+    body: 'In observance of Guru Nanak Jayanti, Miraculous Children Academy, Nikhura, Buxar will remain closed on Wednesday, 25 November 2026. Regular classes resume at 08:00 AM on Thursday, 26 November 2026.',
   },
 ];
 
-export const GALLERY_ITEMS: GalleryItem[] = [
+export const INITIAL_GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'gal-1',
-    title: 'Main Academic Quadrangle & Sandstone Facade',
-    category: 'Campus',
-    caption: 'Sunlit limestone academic block housing Classes 1–10, administrative wing, and central assembly courtyard.',
+    title: 'Main Academic Block & Campus Courtyard — Nikhura',
+    category: 'School',
+    caption: 'Sunlit academic wing housing Classes Nursery–10, administrative desk, and assembly courtyard in Nikhura, Buxar.',
     imageUrl: SCHOOL_IMAGES.heroCampus,
-    aspectLabel: 'Academic Campus',
+    aspectLabel: 'School Campus',
   },
   {
     id: 'gal-2',
-    title: 'Senior Reference Library & Reading Hall',
-    category: 'Academics',
-    caption: 'Over 14,500 CBSE reference volumes, periodicals, and quiet collaborative study tables.',
+    title: 'Reference Library & Quiet Study Hall',
+    category: 'School',
+    caption: 'CBSE & NCERT reference library with reading tables for primary through secondary students.',
     imageUrl: SCHOOL_IMAGES.library,
     aspectLabel: 'Library Wing',
   },
   {
     id: 'gal-3',
-    title: 'Composite CBSE Science & STEM Laboratory',
-    category: 'Laboratories',
-    caption: 'Equipped for Class 6–10 Physics, Chemistry, and Biology practical investigations and STEM projects.',
+    title: 'Annual Science Exhibition & STEM Lab Showcase',
+    category: 'Events',
+    caption: 'Students presenting Physics, Chemistry, and Biology working models during our annual academic exhibition.',
     imageUrl: SCHOOL_IMAGES.scienceLab,
-    aspectLabel: 'Science Wing',
+    aspectLabel: 'Academic Event',
   },
   {
     id: 'gal-4',
-    title: 'Foundational Montessori & Early Years Studio',
-    category: 'Academics',
-    caption: 'Tactile birchwood learning aids and sunlit reading corners designed for Nursery, LKG, and UKG.',
+    title: 'Foundational Stage Activity & Cultural Morning',
+    category: 'Events',
+    caption: 'Early years classrooms featuring tactile learning kits, storytelling, and creative art displays.',
     imageUrl: SCHOOL_IMAGES.earlyYears,
-    aspectLabel: 'Early Years Wing',
+    aspectLabel: 'Early Years Program',
   },
   {
     id: 'gal-5',
-    title: 'Athletic Track & Multi-Sport Pavilion',
-    category: 'Sports & Arts',
-    caption: '8-lane synthetic athletic track, outdoor basketball courts, and shaded spectator pavilion.',
+    title: 'Annual Sports Meet & Cultural Ground',
+    category: 'Sports & Cultural',
+    caption: 'Inter-house athletics track, relay races, and outdoor cultural celebration pavilion.',
     imageUrl: SCHOOL_IMAGES.sportsComplex,
-    aspectLabel: 'Athletics Complex',
+    aspectLabel: 'Sports & Cultural',
   },
 ];

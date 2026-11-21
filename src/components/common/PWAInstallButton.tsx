@@ -17,7 +17,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ variant = 'l
   const buttonClasses =
     variant === 'dark'
       ? 'inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-lg border border-white/25 text-white hover:bg-white/10 transition-colors whitespace-nowrap shrink-0 cursor-pointer'
-      : 'inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-lg border border-[#0F2859]/20 text-[#0F2859] bg-white hover:bg-[#F0F4FB] transition-colors whitespace-nowrap shrink-0 cursor-pointer';
+      : 'inline-flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-lg border border-royal-900/20 text-royal-900 bg-white hover:bg-royal-50 transition-colors whitespace-nowrap shrink-0 cursor-pointer';
 
   if (isInstallable) {
     return (
@@ -49,7 +49,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ variant = 'l
           >
             <div className="w-full max-w-sm rounded-xl bg-white p-6 border border-slate-200 shadow-xl text-slate-900">
               <div className="flex items-start justify-between gap-4">
-                <h3 id="ios-install-title" className="font-display text-lg font-semibold text-[#0F2859]">
+                <h3 id="ios-install-title" className="font-display text-lg font-semibold text-royal-900">
                   Install MCA Portal on iOS
                 </h3>
                 <button
@@ -68,7 +68,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({ variant = 'l
               <button
                 type="button"
                 onClick={() => setShowIOSGuide(false)}
-                className="mt-5 w-full rounded-lg bg-[#0F2859] py-2.5 text-sm font-medium text-white hover:bg-[#17387A] transition-colors"
+                className="mt-5 w-full rounded-lg bg-royal-900 py-2.5 text-sm font-medium text-white hover:bg-royal-800 transition-colors"
               >
                 Done
               </button>

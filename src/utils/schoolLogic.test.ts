@@ -1,15 +1,27 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  buildPrintableTextDownload,
   computeAttendanceSummary,
   computeCbseGrade,
+  computeContrastWithWhite,
   computeExamSummary,
+  deriveBrandPalette,
+  filterHomework,
   filterNotices,
+  filterStudyMaterials,
   findDemoStudent,
+  normalizeHexColor,
   validateContactInquiry,
   validateStudentSearchQuery,
+  verifyAdminPasscode,
 } from './schoolLogic';
-import type { NoticeItem, StudentRecord } from '../types/school';
+import type {
+  HomeworkItem,
+  NoticeItem,
+  StudentRecord,
+  StudyMaterialItem,
+} from '../types/school';
 
 test('computeCbseGrade maps percentage thresholds accurately', () => {
   assert.equal(computeCbseGrade(95), 'A1');
@@ -74,7 +86,7 @@ test('findDemoStudent matches rollNumber case-insensitively with class and secti
       house: 'Sapphire',
       classTeacher: 'Mrs. Sunita Nair',
       guardianName: 'Rajesh Sharma (Demo)',
-      guardianContactMasked: '+91 98XXX XX410',
+      guardianContactMasked: 'Verified Demo Guardian',
       dateOfBirthMasked: '14-Aug-2011',
       isDemoRecord: true,
       attendance: [],
@@ -152,3 +164,118 @@ test('validateContactInquiry validates email, phone, and message length', () => 
   });
   assert.equal(valid.valid, true);
 });
+
+test('filterStudyMaterials filters by class, kind, and bilingual search query', () => {
+  const materials: StudyMaterialItem[] = [
+    {
+      id: 'm1',
+      title: 'Quadratic Equations Revision Notes',
+      titleHi: 'द्विघात समीकरण पुनरावृत्ति नोट्स',
+      classLevel: 'Class 10',
+      subject: 'Mathematics',
+      kind: 'material',
+      summary: 'Formula sheet and NCERT examples.',
+      content: 'ax^2 + bx + c = 0',
+      updatedDate: '20 Nov 2026',
+      author: 'Mr. Rakesh Kumar',
+    },
+    {
+      id: 'm2',
+      title: 'Class 8 Science Sample Paper',
+      titleHi: 'कक्षा 8 विज्ञान सैंपल पेपर',
+      classLevel: 'Class 8',
+      subject: 'Science',
+      kind: 'sample-paper',
+      summary: '80-mark CBSE pattern practice paper.',
+      content: 'Section A MCQs...',
+      updatedDate: '18 Nov 2026',
+      author: 'Mrs. Sunita Nair',
+    },
+  ];
+
+  assert.equal(filterStudyMaterials(materials, 'All', 'All', '').length, 2);
+  assert.equal(filterStudyMaterials(materials, 'Class 10', 'All', '').length, 1);
+  assert.equal(filterStudyMaterials(materials, 'All', 'sample-paper', '').length, 1);
+  assert.equal(filterStudyMaterials(materials, 'All', 'All', 'द्विघात').length, 1);
+});
+
+test('filterHomework filters by class and holiday vs daily mode', () => {
+  const homework: HomeworkItem[] = [
+    {
+      id: 'h1',
+      classLevel: 'Class 5',
+      subject: 'Mathematics',
+      title: 'Fractions Exercise 4.2',
+      description: 'Solve questions 1 to 10 in notebook.',
+      assignedDate: '20 Nov 2026',
+      dueDate: '22 Nov 2026',
+      isHolidayHomework: false,
+    },
+    {
+      id: 'h2',
+      classLevel: 'Class 10',
+      subject: 'Science',
+      title: 'Winter Break Lab Record',
+      description: 'Complete practical diagrams for optics.',
+      assignedDate: '19 Nov 2026',
+      dueDate: '02 Dec 2026',
+      isHolidayHomework: true,
+    },
+  ];
+
+  assert.equal(filterHomework(homework, 'All', 'all').length, 2);
+  assert.equal(filterHomework(homework, 'All', 'daily').length, 1);
+  assert.equal(filterHomework(homework, 'All', 'holiday').length, 1);
+  assert.equal(filterHomework(homework, 'Class 10', 'holiday').length, 1);
+  assert.equal(filterHomework(homework, 'Class 5', 'holiday').length, 0);
+});
+
+test('verifyAdminPasscode checks demo passcode accurately', () => {
+  assert.equal(verifyAdminPasscode('MCA-ADMIN-2026'), true);
+  assert.equal(verifyAdminPasscode(' mca-admin-2026 '), true);
+  assert.equal(verifyAdminPasscode('wrong-pass'), false);
+  assert.equal(verifyAdminPasscode(''), false);
+});
+
+test('buildPrintableTextDownload formats study item metadata and body cleanly', () => {
+  const txt = buildPrintableTextDownload({
+    id: 'm1',
+    title: 'Trigonometry Sheet',
+    titleHi: 'त्रिकोणमिति नोट्स',
+    classLevel: 'Class 10',
+    subject: 'Mathematics',
+    kind: 'worksheet',
+    summary: 'Identity proofs.',
+    content: 'sin^2 x + cos^2 x = 1',
+    updatedDate: '20 Nov 2026',
+    author: 'Faculty',
+  });
+  assert.ok(txt.includes('NIKHURA, BUXAR, BIHAR'));
+  assert.ok(txt.includes('Trigonometry Sheet'));
+  assert.ok(txt.includes('sin^2 x + cos^2 x = 1'));
+});
+
+test('normalizeHexColor normalizes short/full hex and falls back safely', () => {
+  assert.equal(normalizeHexColor('#0f2859'), '#0F2859');
+  assert.equal(normalizeHexColor('1a3'), '#11AA33');
+  assert.equal(normalizeHexColor('invalid-color'), '#0F2859');
+});
+
+test('deriveBrandPalette preserves Royal Blue defaults and derives shades for custom colors', () => {
+  const royal = deriveBrandPalette('#0F2859');
+  assert.equal(royal.c900, '#0F2859');
+  assert.equal(royal.c950, '#09193A');
+  assert.equal(royal.c50, '#F0F4FB');
+
+  const emerald = deriveBrandPalette('#0F4C3A');
+  assert.equal(emerald.c900, '#0F4C3A');
+  assert.notEqual(emerald.c950, '#0F4C3A');
+  assert.notEqual(emerald.c50, '#0F4C3A');
+});
+
+test('computeContrastWithWhite distinguishes high-contrast dark shades from light colors', () => {
+  assert.ok(computeContrastWithWhite('#0F2859') >= 10);
+  assert.ok(computeContrastWithWhite('#0F4C3A') >= 8);
+  assert.ok(computeContrastWithWhite('#FFFFFF') === 1);
+});
+

@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Playfair Display", "Noto Sans Devanagari", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Devanagari", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-royal-950: #09193A;
   --color-royal-900: #0F2859;
   --color-royal-800: #17387A;
   --color-royal-700: #1E4899;
+  --color-royal-100: #E2EAF7;
   --color-royal-50: #F0F4FB;
 
   --color-gold-600: #9E701B;

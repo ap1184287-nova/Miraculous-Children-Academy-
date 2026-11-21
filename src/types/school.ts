@@ -1,3 +1,5 @@
+export type LanguageCode = 'en' | 'hi';
+
 export type PageId =
   | 'home'
   | 'about'
@@ -33,10 +35,49 @@ export interface ClassCurriculum {
   stageName: string;
   ageGroup: string;
   sections: Section[];
+  classTeacher: string;
   coreSubjects: string[];
   coCurriculars: string[];
   assessmentPattern: string;
   focusSummary: string;
+}
+
+export interface TeacherProfile {
+  id: string;
+  name: string;
+  nameHi: string;
+  role: string;
+  roleHi: string;
+  qualification: string;
+  subjects: string;
+  classesHandled: string;
+  experienceYears: number;
+}
+
+export type StudyMaterialKind = 'material' | 'worksheet' | 'sample-paper';
+
+export interface StudyMaterialItem {
+  id: string;
+  title: string;
+  titleHi: string;
+  classLevel: ClassLevel;
+  subject: string;
+  kind: StudyMaterialKind;
+  summary: string;
+  content: string;
+  updatedDate: string;
+  author: string;
+}
+
+export interface HomeworkItem {
+  id: string;
+  classLevel: ClassLevel;
+  subject: string;
+  title: string;
+  description: string;
+  assignedDate: string;
+  dueDate: string;
+  isHolidayHomework: boolean;
 }
 
 export interface AttendanceMonth {
@@ -100,7 +141,7 @@ export interface NoticeItem {
   isPinned?: boolean;
 }
 
-export type GalleryCategory = 'Campus' | 'Academics' | 'Laboratories' | 'Sports & Arts';
+export type GalleryCategory = 'School' | 'Events' | 'Sports & Cultural';
 
 export interface GalleryItem {
   id: string;
@@ -118,6 +159,37 @@ export interface ContactInquiry {
   classApplying: ClassLevel;
   subject: string;
   message: string;
+}
+
+export interface ContactMessageRecord extends ContactInquiry {
+  id: string;
+  referenceNo: string;
+  submittedAt: string;
+}
+
+export interface SiteContentConfig {
+  schoolName: string;
+  schoolNameHi: string;
+  heroTitle: string;
+  heroTitleHi: string;
+  heroSubtitle: string;
+  heroSubtitleHi: string;
+  welcomeTitle: string;
+  welcomeTitleHi: string;
+  welcomeMessage: string;
+  welcomeMessageHi: string;
+  principalName: string;
+  principalQualification: string;
+  principalMessage: string;
+  principalMessageHi: string;
+  address: string;
+  addressHi: string;
+  phone: string;
+  email: string;
+  officeHours: string;
+  admissionsBanner: string;
+  admissionsBannerHi: string;
+  primaryColor: string;
 }
 
 export type DailyAttendanceStatus = 'Present' | 'Absent' | 'Leave';

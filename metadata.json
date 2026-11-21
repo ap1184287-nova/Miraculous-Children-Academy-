@@ -1,0 +1,6 @@
+{
+  "name": "Miraculous Children Academy",
+  "description": "Official CBSE school website and digital management portal for Miraculous Children Academy (Nursery to Class 10).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
